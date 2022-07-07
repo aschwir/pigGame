@@ -31,12 +31,12 @@ btnRoll.addEventListener('click', function () {
   //check for rolled 1
   if (dice != 1) {
     currentScore += dice;
-
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
-    current0El.textContent = currentScore; //change later for switch player
   } else {
     //switch to next player
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
     activePlayer = activePlayer == 0 ? 1 : 0;
   }
 });
