@@ -53,26 +53,28 @@ btnRoll.addEventListener('click', function () {
 });
 
 btnHold.addEventListener('click', function () {
-  //add current score to active player
-  scores[activePlayer] += currentScore;
+  if (playing) {
+    //add current score to active player
+    scores[activePlayer] += currentScore;
 
-  document.getElementById(`score--${activePlayer}`).textContent =
-    scores[activePlayer];
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
 
-  //check score is >= 100
-  if (scores[activePlayer] >= 100) {
-    playing = false;
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.add('player--winner');
+    //check score is >= 100
+    if (scores[activePlayer] >= 100) {
+      diceEl.classList.add('hidden');
+      playing = false;
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
 
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.remove('player--active');
-  } else {
-    switchPlayer();
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      switchPlayer();
+    }
+    //finish the game
   }
-  //finish the game
-
   //switch to the next player
 });
